@@ -1,0 +1,75 @@
+
+<div class = "conatiner">
+    <br>
+        <div class = "form">
+          <form #form ="ngForm" (submit) = "addContact()" style = "margin:0 25em 0 3em" *ngIf="!toggleForm" >
+                <h2 class = "page-header" >Add contacts Form</h2>
+              <div class = "form-group">
+                    <label> First Name:</label>
+                    <input type = "text" [(ngModel)]= "first_name" name = "first_name" class = "form-control" required>
+              </div>
+              <div class = "form-group">
+                  <label> Last Name:</label>
+                  <input type = "text" [(ngModel)]="last_name" name = "last_name" class = "form-control" required>
+             </div>
+             <div class = "form-group">
+                 <label> Phone: </label>
+                 <input type = "text" [(ngModel)]="phone" name = "phone" class = "form-control" required>
+             </div>
+             <input type = "submit" value = "Add" class = "btn btn btn-success" [disabled]= "form.invalid">
+        </form>
+    </div>   
+</div>
+        
+<hr>
+<div class = "conatiner">
+    <br>  
+        <div class = "form">
+                
+          <form #editForm ="ngForm" (submit) = "updateContact(editForm)" style = "margin:0 25em 0 3em" *ngIf="toggleForm" >
+            <h2 class = "page-header" >Edit contacts Form</h2>
+              <div class = "form-group">
+                    <label> First Name:</label>
+                    <input type = "text" [(ngModel)]= "selectedContact.first_name" name = "first_name" class = "form-control" >
+              </div>
+              <div class = "form-group">
+                  <label> Last Name:</label>
+                  <input type = "text" [(ngModel)]="selectedContact.last_name" name = "last_name" class = "form-control" >
+             </div>
+             <div class = "form-group">
+                 <label> Phone: </label>
+                 <input type = "text" [(ngModel)]="selectedContact.phone" name = "phone" class = "form-control" required>
+             </div>
+             <input type = "submit" value = "Save" class = "btn btn btn-success">
+        </form>
+    </div>   
+</div>
+ <hr>
+<div class = "container">
+    <div>
+        <h3>Collection of Contacts</h3>
+        <br>
+    </div>
+    <div *ngFor = "let contact of contacts" class = "row">           
+        <div class = "col-md-2">
+                {{contact.first_name}}
+        </div>
+        <div class = "col-md-2">
+                {{contact.last_name}}
+        </div>
+        <div class = "col-md-3">
+                {{contact.phone}}
+        </div>
+        <div class = "col-md-2">
+                <input type = "button" (click) = "showEditForm(contact)" name = "button" value = "Edit" [disabled]="toggleForm" class = "btn btn-primary"> 
+                 
+        </div>
+        <div class = "col-md-2">
+         <input type = "button"(click) = "deleteContact(contact._id)" value = "Delete" class = "btn btn-danger"> 
+         <br><br>      
+        </div>     
+              
+    </div>
+</div>
+
+
